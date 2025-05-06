@@ -2,6 +2,25 @@
     %}  {% block content%}
     
     <h1>AI Salary Predictor</h1>
+
+    {% if prediction %}
+<h2>
+  Your predicted salary is:
+  <span class="contact100-form-title" id="output" style="color: crimson">
+    &nbsp;${{ "{:,.2f}".format(prediction.predicted_salary) }}
+  </span>
+</h2>
+<p>&nbsp;</p>
+{% endif %} 
+
+
+
+{% if error %}
+<span class="contact100-form-title" id="output" style="color: #ff0000">
+  &nbsp;{{ error }}
+</span>
+{% endif %}
+
     <p>
       <h1>Demographic Survey</h1>
       <form action="/predict" method="post">
