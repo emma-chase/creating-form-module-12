@@ -27,127 +27,132 @@
   
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<div class="container mt-5">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <div class="container mt-5">
-    <form action="/predict" method="post">
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <label for="age" class="form-label">Age</label>
-          <select class="form-select" name="age" id="age" required>
-            <option value="">--please choose your age--</option>
-            <option value="0">18-21</option>
-            <option value="1">22-24</option>
-            <option value="2">25-29</option>
-            <option value="3">30-34</option>
-            <option value="4">35-39</option>
-            <option value="5">40-44</option>
-            <option value="6">45-49</option>
-            <option value="7">50-54</option>
-            <option value="8">55-59</option>
-            <option value="9">60-69</option>
-            <option value="10">70+</option>
-          </select>
-        </div>
-  
-        <div class="col-md-6">
-          <label for="gender" class="form-label">Gender</label>
-          <select class="form-select" name="gender" id="gender" required>
-            <option value="">--please choose your gender--</option>
-            <option value="0">Man</option>
-            <option value="1">Nonbinary</option>
-            <option value="2">Prefer not to say</option>
-            <option value="3">Prefer to self-describe</option>
-            <option value="4">Woman</option>
-          </select>
-        </div>
-      </div>
-  
-      <div class="mb-3">
-        <label for="country" class="form-label">Country</label>
-        <select class="form-select" name="country" id="country" required>
-          <option value="">--please choose your country--</option>
-          <option value="0">Algeria</option>
-          <option value="1">Argentina</option>
-          <option value="2">Australia</option>
-          <!-- (You can keep the full list of countries here...) -->
-          <option value="54">United Kingdom</option>
-          <option value="55">United States</option>
-          <option value="56">Viet Nam</option>
-          <option value="57">Zimbabwe</option>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container py-5">
+  <form action="/predict" method="post" class="needs-validation" novalidate>
+    
+    <!-- Age & Gender -->
+    <div class="row g-3 mb-3">
+      <div class="col-md-6">
+        <label for="age" class="form-label">Age</label>
+        <select class="form-select" name="age" id="age" required>
+          <option value="">--please choose your age--</option>
+          <option value="0">18-21</option>
+          <option value="1">22-24</option>
+          <option value="2">25-29</option>
+          <option value="3">30-34</option>
+          <option value="4">35-39</option>
+          <option value="5">40-44</option>
+          <option value="6">45-49</option>
+          <option value="7">50-54</option>
+          <option value="8">55-59</option>
+          <option value="9">60-69</option>
+          <option value="10">70+</option>
         </select>
       </div>
-  
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <label for="highest_deg" class="form-label">Highest Degree Earned</label>
-          <select class="form-select" name="highest_deg" id="highest_deg" required>
-            <option value="">--please choose your degree--</option>
-            <option value="0">Bachelor’s degree</option>
-            <option value="1">Doctoral degree</option>
-            <option value="2">I prefer not to answer</option>
-            <option value="3">Master’s degree</option>
-            <option value="4">No formal education past high school</option>
-            <option value="5">Professional doctorate</option>
-            <option value="6">Some college/university study without earning a bachelor’s degree</option>
-          </select>
-        </div>
-  
-        <div class="col-md-6">
-          <label for="code_experience" class="form-label">Coding Experience</label>
-          <select class="form-select" name="coding_exp" id="code_experience" required>
-            <option value="">--please choose your code experience--</option>
-            <option value="0">1-3 years</option>
-            <option value="1">10-20 years</option>
-            <option value="2">20+ years</option>
-            <option value="3">3-5 years</option>
-            <option value="4">5-10 years</option>
-            <option value="5">&lt; 1 years</option>
-            <option value="6">I have never written code</option>
-          </select>
-        </div>
+      <div class="col-md-6">
+        <label for="gender" class="form-label">Gender</label>
+        <select class="form-select" name="gender" id="gender" required>
+          <option value="">--please choose your gender--</option>
+          <option value="0">Man</option>
+          <option value="1">Nonbinary</option>
+          <option value="2">Prefer not to say</option>
+          <option value="3">Prefer to self-describe</option>
+          <option value="4">Woman</option>
+        </select>
       </div>
-  
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <label for="current_title" class="form-label">Current Title</label>
-          <select class="form-select" name="title" id="current_title" required>
-            <option value="">--please choose your current title--</option>
-            <option value="0">Data Administrator</option>
-            <option value="1">Data Analyst</option>
-            <option value="2">Data Architect</option>
-            <option value="3">Data Engineer</option>
-            <option value="4">Data Scientist</option>
-            <option value="5">Developer Advocate</option>
-            <option value="6">Engineer (non-software)</option>
-            <option value="7">ML/MLOps Engineer</option>
-            <option value="8">Manager</option>
-            <option value="9">Other</option>
-            <option value="10">Research Scientist</option>
-            <option value="11">Software Engineer</option>
-            <option value="12">Statistician</option>
-            <option value="13">Teacher / professor</option>
-          </select>
-        </div>
-  
-        <div class="col-md-6">
-          <label for="company_size" class="form-label">Company Size</label>
-          <select class="form-select" name="company_size" id="company_size" required>
-            <option value="">--please choose your company size--</option>
-            <option value="0">0-49 employees</option>
-            <option value="1">10,000+ employees</option>
-            <option value="2">1,000-9,999 employees</option>
-            <option value="3">250-999 employees</option>
-            <option value="4">50-249 employees</option>
-          </select>
-        </div>
+    </div>
+
+    <!-- Country -->
+    <div class="mb-3">
+      <label for="country" class="form-label">Country</label>
+      <select class="form-select" name="country" id="country" required>
+        <option value="">--please choose your country--</option>
+        <option value="0">Algeria</option>
+        <option value="1">Argentina</option>
+        <option value="2">Australia</option>
+        <!-- Full list continues here... -->
+        <option value="54">United Kingdom</option>
+        <option value="55">United States</option>
+        <option value="56">Viet Nam</option>
+        <option value="57">Zimbabwe</option>
+      </select>
+    </div>
+
+    <!-- Education & Coding Experience -->
+    <div class="row g-3 mb-3">
+      <div class="col-md-6">
+        <label for="highest_deg" class="form-label">Highest Degree Earned</label>
+        <select class="form-select" name="highest_deg" id="highest_deg" required>
+          <option value="">--please choose your degree--</option>
+          <option value="0">Bachelor’s degree</option>
+          <option value="1">Doctoral degree</option>
+          <option value="2">I prefer not to answer</option>
+          <option value="3">Master’s degree</option>
+          <option value="4">No formal education past high school</option>
+          <option value="5">Professional doctorate</option>
+          <option value="6">Some college/university study without earning a bachelor’s degree</option>
+        </select>
       </div>
-  
-      <div class="text-center">
-        <button type="submit" class="btn btn-primary px-5">Submit</button>
+      <div class="col-md-6">
+        <label for="code_experience" class="form-label">Coding Experience</label>
+        <select class="form-select" name="coding_exp" id="code_experience" required>
+          <option value="">--please choose your code experience--</option>
+          <option value="0">1-3 years</option>
+          <option value="1">10-20 years</option>
+          <option value="2">20+ years</option>
+          <option value="3">3-5 years</option>
+          <option value="4">5-10 years</option>
+          <option value="5">&lt; 1 year</option>
+          <option value="6">I have never written code</option>
+        </select>
       </div>
-    </form>
+    </div>
+
+    <!-- Title & Company Size -->
+    <div class="row g-3 mb-4">
+      <div class="col-md-6">
+        <label for="current_title" class="form-label">Current Title</label>
+        <select class="form-select" name="title" id="current_title" required>
+          <option value="">--please choose your current title--</option>
+          <option value="0">Data Administrator</option>
+          <option value="1">Data Analyst</option>
+          <option value="2">Data Architect</option>
+          <option value="3">Data Engineer</option>
+          <option value="4">Data Scientist</option>
+          <option value="5">Developer Advocate</option>
+          <option value="6">Engineer (non-software)</option>
+          <option value="7">ML/MLOps Engineer</option>
+          <option value="8">Manager</option>
+          <option value="9">Other</option>
+          <option value="10">Research Scientist</option>
+          <option value="11">Software Engineer</option>
+          <option value="12">Statistician</option>
+          <option value="13">Teacher / professor</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label for="company_size" class="form-label">Company Size</label>
+        <select class="form-select" name="company_size" id="company_size" required>
+          <option value="">--please choose your company size--</option>
+          <option value="0">0-49 employees</option>
+          <option value="1">10,000+ employees</option>
+          <option value="2">1,000-9,999 employees</option>
+          <option value="3">250-999 employees</option>
+          <option value="4">50-249 employees</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary btn-lg px-5">Submit</button>
+    </div>
+  </form>
+</div>
+
   </div>
   
   
