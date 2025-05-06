@@ -23,6 +23,7 @@ Thumbs.db
 venv/
 env/
 .venv/
+myenv/
 
 #Python bytecode files
 __pycache__/
