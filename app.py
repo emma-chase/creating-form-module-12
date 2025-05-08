@@ -13,37 +13,42 @@ CORS(app)
 api_url = "https://new-elchase-api-drhed6h2ajawgwcv.eastus-01.azurewebsites.net"  # base url for API endpoints
 
 
-# main index page route
-@app.route("/")
-def index():
-    return render_template("index.html")
-
-
 @app.route("/predict", methods=["GET", "POST"])
 def predict():
-    print("in predict route")
     if request.method == "GET":
         return render_template("index.html")
 
     if request.method == "POST":
-        print("in post method")
-        #### capture data from the form
-        form = request.form  # declare a form variable to capture the form data
-        print("extracted form data")
-        print(form)
-        # extract user data from the form and save it in a python variable
-        age = form["age"]
-        print(age)
-        gender = form["gender"]
-        country = form["country"]
-        highest_deg = form["highest_deg"]
-        coding_exp = form["coding_exp"]
-        title = form["title"]
-        company_size = form["company_size"]
+        form = request.form
 
-        print(age, gender, country, highest_deg, coding_exp, title, company_size)
+        # Extract form fields
+        age = form.get("age")
+        gender = form.get("gender")
+        country = form.get("country")
+        highest_deg = form.get("highest_deg")
+        coding_exp = form.get("coding_exp")
+        title = form.get("title")
+        company_size = form.get("company_size")
 
-        # Create dictionary of form data
+        # Server-side validation
+        required_fields = {
+            "age": age,
+            "gender": gender,
+            "country": country,
+            "highest_deg": highest_deg,
+            "coding_exp": coding_exp,
+            "title": title,
+            "company_size": company_size,
+        }
+
+        # Find missing fields
+        missing = [field for field, value in required_fields.items() if not value]
+
+        if missing:
+            error_message = "Please fill out all required fields: " + ", ".join(missing)
+            return render_template("index.html", error=error_message, form_data=form)
+
+        # Proceed if all fields are filled
         salary_predict_variables = {
             "age": age,
             "gender": gender,
@@ -54,43 +59,21 @@ def predict():
             "company_size": company_size,
         }
 
-        # Send data to API as JSON
         url = api_url + f"/predict"
-        print(url)
         headers = {"Content-Type": "application/json"}
-        print(headers)
 
-        # get a response from the api
         try:
-            # Send data to API as JSON and get a response
-            response = requests.post(
-                url, json=salary_predict_variables, headers=headers
-            )
+            response = requests.post(url, json=salary_predict_variables, headers=headers)
 
-            # Check if the response was successful (status code 200)
             if response.status_code == 200:
-                # Decode the JSON response
                 prediction = response.json()
-
-                print(prediction)  # Print the decoded JSON for debugging
-
-                # Pass the decoded JSON response to the HTML page
                 return render_template("index.html", prediction=prediction)
-
             else:
-                # Handle responses with error status codes
-                print(
-                    f"Error: Received response with status code {response.status_code}"
-                )
                 error_message = f"Failed to get prediction, server responded with status code: {response.status_code}"
                 return render_template("index.html", error=error_message)
 
         except requests.exceptions.RequestException as e:
-            # Handle network-related errors (e.g., DNS failure, refused connection, etc)
-            print(f"Request failed: {e}")
-            return render_template(
-                "index.html", error="Failed to make request to prediction API."
-            )
+            return render_template("index.html", error="Failed to make request to prediction API.")
 
 
 if __name__ == "__main__":
