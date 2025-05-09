@@ -82,7 +82,7 @@ def predict():
                 print(
                     f"Error: Received response with status code {response.status_code}"
                 )
-                error_message = f"Failed to get prediction, server responded with status code: {response.status_code}"
+                error_message = f"Please respond to all questions. They are all required."
                 return render_template("index.html", error=error_message)
 
         except requests.exceptions.RequestException as e:
